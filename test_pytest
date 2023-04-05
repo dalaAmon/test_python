@@ -1,0 +1,87 @@
+# @Time :2023-3-26 17:20
+# @Author :TK
+# @Describe :测试用例文件
+import pytest
+from selenium import webdriver
+from time import sleep
+from selenium.webdriver.common.by import By
+
+@pytest.fixture()
+def driver():
+   driver = webdriver.Edge()
+   driver.maximize_window()
+   driver.get("https://www.educoder.net/")
+   sleep(1)
+
+   print("测试用例准备执行了") #前置部分
+   yield driver  #生成器的写法，返回值
+
+   print("测试用例执行结束了") #后置部分
+   driver.quit()
+
+@pytest.fixture(scope="session") #只登陆一次，不进行重复登陆
+def uer_driver():
+   '''已经是登陆状态的浏览器'''
+   driver = webdriver.Edge()
+   driver.maximize_window()
+   driver.get("https://www.educoder.net/")
+   sleep(1)
+   el = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/section[1]/header/section/div/div/span")
+   el.click()
+   sleep(1)
+   el = driver.find_element(By.ID, "login")
+   el.send_keys("15179850671")
+   sleep(1)
+   el = driver.find_element(By.ID, "password")
+   el.send_keys("01240422616318@")
+   sleep(1)
+   el = driver.find_element(By.XPATH, '//*[@id="rc-tabs-0-panel-1"]/div/form/div[4]/div/div/div/button')
+   el.click()
+   sleep(1)
+   yield driver
+   driver.quit()
+
+def test_login_ok(driver):
+   '''登陆成功'''
+   el = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/section[1]/header/section/div/div/span")
+   el.click()
+   sleep(1)
+   el = driver.find_element(By.ID, "login")
+   el.send_keys("15179850671")
+   sleep(1)
+   el = driver.find_element(By.ID, "password")
+   el.send_keys("01240422616318@")
+   sleep(1)
+   el = driver.find_element(By.XPATH, '//*[@id="rc-tabs-0-panel-1"]/div/form/div[4]/div/div/div/button')
+   el.click()
+   sleep(1)
+   driver.quit()
+
+@pytest.mark.xfail   #预期内的失败，但是测试成功了
+def test_login_fail(driver):
+   '''登陆失败'''
+   el = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/section[1]/header/section/div/div/span")
+   el.click()
+   sleep(1)
+   el = driver.find_element(By.ID, "login")
+   el.send_keys("15179850671")
+   sleep(1)
+   el = driver.find_element(By.ID, "password")
+   el.send_keys("0124")
+   sleep(1)
+   el = driver.find_element(By.XPATH, '//*[@id="rc-tabs-0-panel-1"]/div/form/div[4]/div/div/div/button')
+   el.click()
+   sleep(1)
+   driver.quit()
+
+def test_click_ok(uer_driver):
+   el = uer_driver.find_element(By.XPATH, '//*[@id="root"]/div/div/section[1]/header/section/ul/li[3]/div[1]/span')
+   # el.click()
+   uer_driver.execute_script("arguments[0].click();", el)
+   sleep(1)
+   el = uer_driver.find_element(By.XPATH, '//*[@id="root"]/div/div/section[2]/section/div/div[1]/div/aside/div/div[2]')
+   el.click()
+
+#断言 出现NoSuchElementException异常
+#wiht pytest.raises(NoSuchElementException):
+   # pass 这里放置可能会出现异常的语句 类似于try捕获异常
