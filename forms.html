@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form表单</title>
+</head>
+<body>
+<!--<form action="javascript:alert('hello')">-->
+<!--    Username:<input type="text" name="username" id="username"><br>-->
+<!--    Password:<input type="password" name="pwd" id="pwd"><br>-->
+<!--    <input type="submit" value="submit" id="submit">-->
+
+<!--</form>-->
+
+<form action="javascript:alert('test')">
+    swimming:<input type="checkbox" name="swimming" value="swimming"><br>
+    reading:<input type="checkbox" name="reading" value="reading"><br>
+    <hr>
+        gender:男<input type="radio" name="gender" value="male">
+               女<input type="radio" name="gender" value="famale"><br>
+
+    <input type="submit" value="login" >
+
+</form>
+<table width="600">
+        <tr>
+            <td>性别:</td>
+            <td>
+                <!-- 用label提高用户体验 -->
+                <input type="radio" name="sex"> 男
+                <input type="radio" name="sex"> 女
+            </td>
+        </tr>
+        <tr>
+            <td>生日：</td>
+            <td>
+                <select name="year">
+<!--                    <option>&#45;&#45;请选择年份&#45;&#45;</option>-->
+                    <option value="1">2001</option>
+                    <option value="2">2002</option>
+                    <option value="3">2003</option>
+                </select>
+                <select name="month">
+                    <option >--请选择月份--</option>
+                    <option value="11">1</option>
+                    <option value="22">2</option>
+                    <option value="33">3</option>
+                </select>
+                <select name="day">
+                    <option>--请选择日--</option>
+                    <option value="111">1</option>
+                    <option value="222">2</option>
+                    <option value="333">3</option>
+                </select>
+            </td>
+        </tr>
+        <!-- 第三行 -->
+        <tr>
+            <td>所在地区：</td>
+            <td><input type="text"value="北京"></td>
+        </tr>
+        <!-- 第四行 -->
+        <tr>
+            <td>婚姻状况：</td>
+            <td>
+                <input type="radio" name="marry" checked="checked">未婚
+                <input type="radio" name="marry">已婚
+                <input type="radio" name="marry">离婚
+            </td>
+        </tr>
+        <tr>
+            <td>学历：</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>喜欢的类型：</td>
+            <td>
+                <input type="checkbox"name="love">可爱的
+                <input type="checkbox"name="love">可爱的
+                <input type="checkbox"name="love">可爱的
+                <input type="checkbox"name="love">可爱的
+                <input type="checkbox"name="love">可爱的
+            </td>
+        </tr>
+        <tr>
+            <td>个人简介：</td>
+            <td>
+                <textarea>个人简介</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <!-- 提交按钮submit -->
+                <input type="submit" value="免费注册">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="checkbox" checked="checked"> 我同意注册条款和会员加入标准
+            </td>
+
+        </tr>
+</table>
+<a href="javascript:confirm('真的要删除数据吗？')" id="confirm">Confirm</a><br>
+<a href="javascript:alert('提示框')" id="alert">Alert</a><br>
+<a href="javascript:var age=prompt('请输入年龄');document.write(age)" id="prompt">Prompt</a><br>
+</body>
+</html>
